@@ -155,8 +155,54 @@ document.querySelector('.close').addEventListener('click', function() {
     modal.style.opacity = 0; // Fade out
     modal.style.transform = 'scale(0.7)'; // Scale down
     setTimeout(() => {
-        modal.style.display = 'none'; // Finally, hide the modal
-    }, 400); // Match the timeout to the length of your transitions
+        modal.style.display = 'none'; 
+    }, 400); 
 });
 
 
+// Assuming the JSON file is in the same directory as your HTML file
+const loadQuizData = async () => {
+    try {
+      const response = await fetch('data.json');
+      const data = await response.json();
+      buildQuiz(data);
+    } catch (error) {
+      console.error("Failed to load quiz data:", error);
+    }
+  };
+  
+  const buildQuiz = (data) => {
+    const quizContainer = document.querySelector('.quiz-content'); // Adjust selector as needed
+    let html = '';
+  
+    // Dynamically generate HTML for each question
+    data.questions.forEach((question, index) => {
+      html += `
+        <div class="question">
+          <h2>${question.question_name}</h2>
+          <div class="answers">`;
+  
+      // Generate answers for each question
+      question.answers.forEach(answer => {
+        html += `
+            <label class="answer-option">
+              <input type="radio" name="question${index}" value="${answer.outcome}" hidden>
+              <div class="answer-content">
+                <span>${answer.text}</span>
+                <img src="${answer.img_url}" alt="">
+              </div>
+            </label>`;
+      });
+  
+      html += `
+          </div>
+        </div>`;
+    });
+  
+    // Append generated HTML to the quiz container
+    quizContainer.innerHTML = html;
+  
+  };
+  
+  document.addEventListener('DOMContentLoaded', loadQuizData);
+  

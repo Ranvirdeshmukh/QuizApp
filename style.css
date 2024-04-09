@@ -49,13 +49,13 @@ body, html {
     background: linear-gradient(to right, #d93fff, #f940bc 30%, #f03540 71%, #fedb10);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent; /* Make the text color transparent to reveal the gradient */
+    color: transparent; 
 }
 
 
 /* Align the question to the center with a specific width */
 .question, .answers {
-    width: 1000px; /* Match width of the second page paragraph */
+    width: 1000px; 
     text-align: center; /* Center the text for the question */
     margin: 0 auto; /* Center the container itself */
 }
@@ -72,7 +72,7 @@ body, html {
     grid-template-columns: repeat(2, 1fr); /* Create two columns, each taking half the space */
     grid-gap: 20px; /* Adjust gap between grid items if needed */
     justify-content: center;
-    margin: 20px auto; /* Ensure the answers are centered and add some vertical space */
+    margin: 20px auto; 
 }
 
 /* Base style for answer labels with initial animation setup */
