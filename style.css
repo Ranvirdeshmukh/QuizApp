@@ -212,16 +212,16 @@ input[type="radio"]:checked + label {
 
 .modal-content {
     background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
+    margin: auto; /* Center the modal */
+    padding: 15px; /* Reduced padding to decrease overall height */
     border: 1px solid #888;
-    width: 90%; /* Make the modal width responsive */
-    max-width: 1000px; /* Keep the max width to maintain readability */
+    width: 90%; /* Responsive width */
+    max-width: 1000px; /* Maximum width for readability */
+    max-height: 80%; /* Optionally add a max-height to restrict the container's height */
+    overflow: auto; /* Allow scrolling within the modal if content exceeds its height */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     position: relative;
-    overflow: hidden; /* Prevent content from spilling out */
 }
-
 .modal-content p, .modal-content h1, .modal-content h2, .modal-content h3 {
     word-wrap: break-word; /* Ensures text breaks to prevent overflow */
     hyphens: auto; /* Allows hyphenation for word breaks */
