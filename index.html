@@ -8,55 +8,159 @@
 </head>
 <body>
 
-<!-- Full-screen background poster -->
-<div class="quiz-intro-bg">
-    <img src="Ranvir Deshmukh-2.png" alt="Suits Quiz Poster" class="quiz-poster">
+<!-- First Full-screen background poster -->
+<div class="first-page">
+    <img src="Ranvir Deshmukh-2.png" alt="Suits Quiz Poster" class="full-screen-poster">
 </div>
 
-<!-- Quiz intro and container -->
-<div class="quiz-intro">
+<!-- Second Page Content -->
+<div class="second-page">
     <p>Ever wondered which character from "Suits" you're most like? Take this quiz to find out!</p>
-</div>
-
-    
-
-<div class="quiz-container">
-    <h1>"Which 'Suits' Character Are You?" Quiz</h1>
-    <form id="suitsQuiz">
-
+    <div class="quiz-content">
         <!-- Question 1 -->
         <div class="question">
             <h2>How do you handle pressure?</h2>
             <div class="answers">
-                <label>
-                    <input type="radio" name="question1" value="A">
-                    With confidence and charm, I can talk my way through anything.
+                <label class="answer-option">
+                    <input type="radio" name="question1" value="A" hidden>
+                    <div class="answer-content">
+                        <span>With confidence and charm, I can talk my way through anything.</span>
+                    </div>
                 </label>
-                <label>
-                    <input type="radio" name="question1" value="B">
-                    I focus on the facts and figures; logic always leads the way.
+                <label class="answer-option">
+                    <input type="radio" name="question1" value="B" hidden>
+                    <div class="answer-content">
+                        <span>I focus on the facts and figures; logic always leads the way.</span>
+                    </div>
                 </label>
-                <label>
-                    <input type="radio" name="question1" value="C">
-                    I seek advice from those I trust and then make a plan.
+                <label class="answer-option">
+                    <input type="radio" name="question1" value="C" hidden>
+                    <div class="answer-content">
+                        <span>I seek advice from those I trust and then make a plan.</span>
+                    </div>
                 </label>
-                <label>
-                    <input type="radio" name="question1" value="D">
-                    Pressure fuels my creativity, and I find unconventional solutions.
+                <label class="answer-option">
+                    <input type="radio" name="question1" value="D" hidden>
+                    <div class="answer-content">
+                        <span>Pressure fuels my creativity, and I find unconventional solutions.</span>
+                    </div>
+                </label>
+                
+               
+            </div>
+
+            <h2>What's your approach to solving problems?</h2>
+            <div class="answers">
+                <label class="answer-option">
+                    <input type="radio" name="question2" value="A" hidden>
+                    <div class="answer-content">
+                        <span>I trust my gut and my ability to read people.</span>
+                    </div>
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="question2" value="B" hidden>
+                    <div class="answer-content">
+                        <span>Methodically, with thorough research and preparation</span>
+                    </div>
+                </label>
+
+                <label class="answer-option">
+                    <input type="radio" name="question2" value="C" hidden>
+                    <div class="answer-content">
+                        <span> By building strong alliances and using my network.</span>
+                    </div>
+                </label>
+
+                <label class="answer-option">
+                    <input type="radio" name="question2" value="D" hidden>
+                    <div class="answer-content">
+                        <span> With persistence and a bit of bending the rules if necessary.</span>
+                    </div>
                 </label>
             </div>
+
+            <h2>How would your friends describe you?</h2>
+            <div class="answers">
+                <label class="answer-option">
+                    <input type="radio" name="question3" value="A" hidden>
+                    <div class="answer-content">
+                        <span> Charismatic and persuasive.</span>
+                    </div>
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="question3" value="B" hidden>
+                    <div class="answer-content">
+                        <span> Intelligent and dependable.</span>
+                    </div>
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="question3" value="C" hidden>
+                    <div class="answer-content">
+                        <span> Loyal and caring.</span>
+                    </div>
+                </label>
+
+                <label class="answer-option">
+                    <input type="radio" name="question3" value="D" hidden>
+                    <div class="answer-content">
+                        <span> Ambitious and bold.</span>
+                    </div>
+                </label>
+              
+            </div>
+
+            <h2>Pick a quote that resonates with you the most?</h2>
+            <div class="answers">
+                <label class="answer-option">
+                    <input type="radio" name="question4" value="A" hidden>
+                    <div class="answer-content">
+                        <span> I don't play the odds, I play the man.</span>
+                    </div>
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="question4" value="B" hidden>
+                    <div class="answer-content">
+                        <span> Winners don’t make excuses.</span>
+                    </div>
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="question4" value="C" hidden>
+                    <div class="answer-content">
+                        <span> Loyalty is a two-way street.</span>
+                    </div>
+                </label>
+                <label class="answer-option">
+                    <input type="radio" name="question4" value="D" hidden>
+                    <div class="answer-content">
+                        <span> When you're backed against the wall, break the goddamn thing down</span>
+                    </div>
+                </label>
+            </div>
+
+           
+
+
+
+
+
+
         </div>
-
-        <!-- Additional questions would follow the same structure -->
-        <!-- Placeholder for additional questions -->
-
-        <button type="submit">Find Out</button>
-    </form>
+        
+        <div id="quiz-result" class="modal" style="display:none;">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <img id="result-image" src="" alt="Result Image">
+              <p id="result-description"></p>
+            </div>
+          </div>
+          
+          
+        
+    </div>
+    <button class="submit-btn">Find Out</button>
+    
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js"></script>
 
 <script src="main.js"></script>
 </body>
