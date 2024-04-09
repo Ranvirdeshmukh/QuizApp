@@ -32,20 +32,26 @@ body, html {
     background-color: #f4f4f4;
 }
 
-/* This ensures the paragraph takes a specific width */
 .second-page p {
     margin: 20px 0;
     width: 1000px;
     height: 300px;
-    background-color: #f4f4f4;
-    color: #ce0000;
+    background-color: #f4f4f4; /* Solid background color for the box */
     font-size: 4em;
     font-weight: bold;
     text-align: center;
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(255, 0, 0, 0.1);
     font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    
+    /* Apply gradient to text */
+    background: -webkit-linear-gradient(left, #d93fff, #f940bc 30%, #f03540 71%, #fedb10);
+    background: linear-gradient(to right, #d93fff, #f940bc 30%, #f03540 71%, #fedb10);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Make the text color transparent to reveal the gradient */
 }
+
 
 /* Align the question to the center with a specific width */
 .question, .answers {
@@ -69,7 +75,7 @@ body, html {
     margin: 20px auto; /* Ensure the answers are centered and add some vertical space */
 }
 
-/* Base style for answer labels */
+/* Base style for answer labels with initial animation setup */
 .answers label {
     height: 300px;
     display: flex;
@@ -79,9 +85,77 @@ body, html {
     cursor: pointer;
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.5s ease;
+    font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    color: #1d1d1f;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+    position: relative; /* Required for pseudo-element animations */
+    overflow: hidden; /* Ensure pseudo-elements don't extend outside the label */
 }
+
+/* Hover effect to scale up and change background color smoothly */
+.answers label:hover {
+    transform: scale(1.02); /* Slightly increase size */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+}
+
+/* Active label styling with animation */
+.answer-option.active {
+    animation: pop 0.4s ease forwards; /* 'pop' animation for active state */
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(1.1); /* Temporarily scale up to create a 'pop' effect */
+    }
+    100% {
+        transform: scale(1); 
+    }
+}
+
+/* Adding a 'pulse' effect on hover using pseudo-element */
+.answers label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); /* Light overlay */
+    border-radius: 5px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.answers label:hover::before {
+    opacity: 1;
+    animation: pulse 2s infinite; /* Continuous 'pulse' animation */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05); /* Slightly enlarge the pseudo-element */
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+
 
 /* Specific colors for each answer label */
 .answers label:nth-of-type(1) { background-color: #ad0000; } /* Dark Blue for Harvey Specter */
@@ -93,7 +167,7 @@ body, html {
 /* Highlight selected label */
 .answer-option.active {
     transform: scale(1.05);
-    z-index: 2; /* Ensure it's above other labels */
+    z-index: 5; /* Ensure it's above other labels */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -108,13 +182,7 @@ body, html {
     background-color: #dcdcdc;
 }
 
-/* Ensure images and text within labels are styled appropriately */
-.answers img {
-    max-width: 90%; /* Allow some padding around the image */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 8px;
-}
+
 
 input[type="radio"] {
     display: none; /* Keep the radio buttons hidden */
@@ -127,7 +195,6 @@ input[type="radio"]:checked + label {
 
 
 
-
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -137,21 +204,59 @@ input[type="radio"]:checked + label {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 90%; /* Make the modal width responsive */
+    max-width: 1000px; /* Keep the max width to maintain readability */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden; /* Prevent content from spilling out */
+}
+
+.modal-content p, .modal-content h1, .modal-content h2, .modal-content h3 {
+    word-wrap: break-word; /* Ensures text breaks to prevent overflow */
+    hyphens: auto; /* Allows hyphenation for word breaks */
+}
+
+/* Adjusted font sizes with a greater range for better readability */
+.modal-content p {
+    font-size: calc(18px + (22 - 18) * ((100vw - 300px) / (1500 - 300)));
+    font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.modal-content h1 {
+    font-size: calc(24px + (28 - 24) * ((100vw - 300px) / (1500 - 300)));
+    font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.modal-content h2, .modal-content h3 {
+    font-size: calc(22px + (26 - 22) * ((100vw - 300px) / (1500 - 300)));
+    font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.modal-content img {
+    /* Image styles remain unchanged */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .close {
+    /* Close button styles remain unchanged */
     color: #aaa;
-    float: right;
+    position: absolute;
+    right: 10px;
+    top: 10px;
     font-size: 28px;
     font-weight: bold;
 }
@@ -163,22 +268,24 @@ input[type="radio"]:checked + label {
     cursor: pointer;
 }
 
-  
 
 
 
+/* Improve button appearance */
 .submit-btn {
-    padding: 10px 20px;
-    background-color: #007bff;
+    font-size: 1rem; /* Match button font size to form elements */
+    letter-spacing: 0.05rem; /* Add spacing between letters for a more open feel */
+    font-weight: 600; /* Make button text bolder */
+    background-color: #007aff; /* Bright blue for a more vibrant button */
     color: white;
     border: none;
     border-radius: 5px;
+    padding: 15px 30px;
     cursor: pointer;
-    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker shade on hover for interactive feedback */
 }
-
 
