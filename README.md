@@ -14,7 +14,7 @@ new screen poppin up after submitting the quiz. I think I tried to do the other 
 it turned out to be.
 
 ## Extra Credit
-    Yes I did a lot of crazy animations for the wesbite using CSS and Javascript. I also tried to do the other json extra credit but am not sure how well it wnet. from the given ec animations , i added the sweet button animation where the button changes its color as you hover over it. Also, added a really cool animation after selecting the option. And one really cool when for the quiz results.
+ Yes I did a lot of crazy animations for the wesbite using CSS and Javascript. I also tried to do the other json extra credit but am not sure how well it wnet. from the given ec animations , i added the sweet button animation where the button changes its color as you hover over it. Also, added a really cool animation after selecting the option. And one really cool when for the quiz results.
 
 
 ## Screenshots
