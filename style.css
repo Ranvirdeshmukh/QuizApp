@@ -29,7 +29,7 @@ body, html {
     padding: 20px 0;
     box-sizing: border-box;
     position: relative;
-    background-color: #f4f4f4;
+    background-color: #d5d5d5;
 }
 
 .second-page p {
@@ -88,14 +88,29 @@ body, html {
     box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.5s ease;
     font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    color: #1d1d1f;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 500;
     text-align: center;
     line-height: 1.4;
-    position: relative; /* Required for pseudo-element animations */
-    overflow: hidden; /* Ensure pseudo-elements don't extend outside the label */
+    position: relative;
+    overflow: hidden;
+
+    /* Gradient text effect */
+    background: -webkit-linear-gradient(left, #d93fff, #f940bc 30%, #f03540 71%, #fedb10);
+    background: linear-gradient(to right, #d93fff, #f940bc 30%, #f03540 71%, #fedb10);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
+
+/* Ensure that the text inside each label inherits the gradient effect */
+.answers label span {
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
 
 /* Hover effect to scale up and change background color smoothly */
 .answers label:hover {
@@ -157,11 +172,38 @@ body, html {
 
 
 
-/* Specific colors for each answer label */
-.answers label:nth-of-type(1) { background-color: #ad0000; } /* Dark Blue for Harvey Specter */
-.answers label:nth-of-type(2) { background-color: #006ea5; } /* Lighter Gray-Blue for Mike Ross */
-.answers label:nth-of-type(3) { background-color: #067301; } /* Soft Beige for Donna Paulsen */
-.answers label:nth-of-type(4) { background-color: #4200c6; } /* Deep Gray for Jessica Pearson */
+
+
+/* Shadows specific to each answer's background color */
+.answers label:nth-of-type(1) {
+    background-color: #ad0000;
+    box-shadow: 0 6px 12px rgba(173, 0, 0, 0.3); /* Dark red shadow for Harvey Specter */
+}
+.answers label:nth-of-type(2) {
+    background-color: #006ea5;
+    box-shadow: 0 6px 12px rgba(0, 110, 165, 0.3); /* Blue shadow for Mike Ross */
+}
+.answers label:nth-of-type(3) {
+    background-color: #067301;
+    box-shadow: 0 6px 12px rgba(6, 115, 1, 0.3); /* Green shadow for Donna Paulsen */
+}
+.answers label:nth-of-type(4) {
+    background-color: #4200c6;
+    box-shadow: 0 6px 12px rgba(66, 0, 198, 0.3); /* Purple shadow for Jessica Pearson */
+}
+
+/* Hover effect */
+.answers label:hover {
+    transform: translateY(-5px); /* Lift the label */
+    /* Optionally, you can intensify the shadow on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Highlight the label when its radio button is selected */
+input[type="radio"]:checked + label {
+    box-shadow: 0 0 0 2px blue; /* Highlight effect */
+}
+
 
 
 /* Highlight selected label */
@@ -179,7 +221,7 @@ body, html {
 
 .answers label:hover {
     transform: translateY(-5px);
-    background-color: #dcdcdc;
+    background-color: #9f9f9f;
 }
 
 
