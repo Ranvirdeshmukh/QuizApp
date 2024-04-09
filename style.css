@@ -160,7 +160,7 @@ body, html {
 /* Specific colors for each answer label */
 .answers label:nth-of-type(1) { background-color: #ad0000; } /* Dark Blue for Harvey Specter */
 .answers label:nth-of-type(2) { background-color: #006ea5; } /* Lighter Gray-Blue for Mike Ross */
-.answers label:nth-of-type(3) { background-color: #9b2900; } /* Soft Beige for Donna Paulsen */
+.answers label:nth-of-type(3) { background-color: #067301; } /* Soft Beige for Donna Paulsen */
 .answers label:nth-of-type(4) { background-color: #4200c6; } /* Deep Gray for Jessica Pearson */
 
 
@@ -208,12 +208,15 @@ input[type="radio"]:checked + label {
     display: flex; /* Use flexbox for centering */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
+    opacity: 0; /* Start fully transparent */
+    transform: scale(0.7); /* Start slightly scaled down */
+    transition: opacity 0.4s ease, transform 0.4s ease; 
 }
 
 .modal-content {
     background-color: #fefefe;
     margin: auto; /* Center the modal */
-    padding: 15px; /* Reduced padding to decrease overall height */
+    padding: 17px; /* Reduced padding to decrease overall height */
     border: 1px solid #888;
     width: 90%; /* Responsive width */
     max-width: 1000px; /* Maximum width for readability */
@@ -271,21 +274,28 @@ input[type="radio"]:checked + label {
 
 
 
-/* Improve button appearance */
+/* Improve button appearance with added shadow and animation */
 .submit-btn {
-    font-size: 1rem; /* Match button font size to form elements */
-    letter-spacing: 0.05rem; /* Add spacing between letters for a more open feel */
-    font-weight: 600; /* Make button text bolder */
-    background-color: #007aff; /* Bright blue for a more vibrant button */
+    font-size: 1.25rem; /* Increased font size for better visibility */
+    letter-spacing: 0.05rem;
+    font-weight: 600;
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 15px 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 10px; 
+    padding: 20px 40px; 
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.5s ease; /* Added background to transition properties */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); /* Enhanced shadow for depth */
+    background-size: 200% auto; /* Prepare for gradient background animation */
+    background-image: linear-gradient(to right, #0008ff 50%, #ff023d 50%); /* Initial state with half vibrant blue, half darker shade */
 }
 
-.submit-btn:hover {
-    background-color: #0056b3; /* Darker shade on hover for interactive feedback */
+.submit-btn:hover, .submit-btn:focus {
+    background-position: right center; /* Move the gradient to show the darker shade on hover */
+    transform: translateY(-5px); /* More noticeable lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.22); /* Larger shadow for a "floating" effect */
 }
 
+.submit-btn:active {
+    transform: translateY(-1px); /* Subtle press-down effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 2px 3px rgba(0, 0, 0, 0.22); /* Return shadow to slightly lifted state */
+}

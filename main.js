@@ -10,6 +10,8 @@ document.querySelector('.submit-btn').addEventListener('click', function(e) {
     } else {
         alert('Please answer all questions.'); // Provide feedback if not all questions are answered
     }
+    showModal(); // Show the modal with animation
+
 });
 
 // document.addEventListener('DOMContentLoaded', () => { // Ensures the script runs after the DOM is fully loaded
@@ -137,5 +139,24 @@ function areAllQuestionsAnswered() {
 }
 
 
+function showModal() {
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'flex'; // Make the modal display:flex to show it
+    setTimeout(() => {
+        modal.style.opacity = 1; // Fade to fully visible
+        modal.style.transform = 'scale(1)'; // Scale to full size
+    }, 10); // Short timeout ensures properties are transitioned from initial state
+}
+
+
+
+document.querySelector('.close').addEventListener('click', function() {
+    const modal = document.querySelector('.modal');
+    modal.style.opacity = 0; // Fade out
+    modal.style.transform = 'scale(0.7)'; // Scale down
+    setTimeout(() => {
+        modal.style.display = 'none'; // Finally, hide the modal
+    }, 400); // Match the timeout to the length of your transitions
+});
 
 
