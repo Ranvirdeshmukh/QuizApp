@@ -160,49 +160,49 @@ document.querySelector('.close').addEventListener('click', function() {
 });
 
 
-// // Assuming the JSON file is in the same directory as your HTML file
-// const loadQuizData = async () => {
-//     try {
-//       const response = await fetch('data.json');
-//       const data = await response.json();
-//       buildQuiz(data);
-//     } catch (error) {
-//       console.error("Failed to load quiz data:", error);
-//     }
-//   };
+// Assuming the JSON file is in the same directory as your HTML file
+const loadQuizData = async () => {
+    try {
+      const response = await fetch('data.json');
+      const data = await response.json();
+      buildQuiz(data);
+    } catch (error) {
+      console.error("Failed to load quiz data:", error);
+    }
+  };
   
-//   const buildQuiz = (data) => {
-//     const quizContainer = document.querySelector('.quiz-content'); // Adjust selector as needed
-//     let html = '';
+  const buildQuiz = (data) => {
+    const quizContainer = document.querySelector('.quiz-content'); // Adjust selector as needed
+    let html = '';
   
-//     // Dynamically generate HTML for each question
-//     data.questions.forEach((question, index) => {
-//       html += `
-//         <div class="question">
-//           <h2>${question.question_name}</h2>
-//           <div class="answers">`;
+    // Dynamically generate HTML for each question
+    data.questions.forEach((question, index) => {
+      html += `
+        <div class="question">
+          <h2>${question.question_name}</h2>
+          <div class="answers">`;
   
-//       // Generate answers for each question
-//       question.answers.forEach(answer => {
-//         html += `
-//             <label class="answer-option">
-//               <input type="radio" name="question${index}" value="${answer.outcome}" hidden>
-//               <div class="answer-content">
-//                 <span>${answer.text}</span>
-//                 <img src="${answer.img_url}" alt="">
-//               </div>
-//             </label>`;
-//       });
+      // Generate answers for each question
+      question.answers.forEach(answer => {
+        html += `
+            <label class="answer-option">
+              <input type="radio" name="question${index}" value="${answer.outcome}" hidden>
+              <div class="answer-content">
+                <span>${answer.text}</span>
+                <img src="${answer.img_url}" alt="">
+              </div>
+            </label>`;
+      });
   
-//       html += `
-//           </div>
-//         </div>`;
-//     });
+      html += `
+          </div>
+        </div>`;
+    });
   
-//     // Append generated HTML to the quiz container
-//     quizContainer.innerHTML = html;
+    // Append generated HTML to the quiz container
+    quizContainer.innerHTML = html;
   
-//   };
+  };
   
-//   document.addEventListener('DOMContentLoaded', loadQuizData);
+  document.addEventListener('DOMContentLoaded', loadQuizData);
   
