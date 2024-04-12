@@ -37,7 +37,7 @@ function constructQuiz(data) {
     } else {
         alert('Please answer all questions.'); 
     }
-    showModal(); // Show the modal with animation
+   // Show the modal with animation
 });
 
 // document.addEventListener('DOMContentLoaded', () => { // Ensures the script runs after the DOM is fully loaded
@@ -78,6 +78,7 @@ function calculateResults() {
     });
 
     displayResult(maxCharacter);
+    showModal(); 
 }
 function displayResult(character) {
     // Get the modal and its components
