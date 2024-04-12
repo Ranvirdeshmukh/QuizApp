@@ -1,15 +1,13 @@
 // Ranvir Deshmukh 
 // Lab-2 
-
 $(document).on('change', '.answer-option input[type="radio"]', function() {
-    let selectedQuestion = $(this).attr('name');
-    
-    // Target the parent .question of the changed radio button to limit the scope of the selection
-    let questionBlock = $(this).closest('.question');
+    let questionBlock = $(this).closest('.question'); 
 
     questionBlock.find('.answer-option').removeClass('active').addClass('dim');
+
     $(this).closest('.answer-option').removeClass('dim').addClass('active');
 });
+
 
 
 function constructQuiz(data) {
