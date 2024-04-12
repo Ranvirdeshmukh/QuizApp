@@ -78,6 +78,8 @@ function calculateResults() {
     });
 
     displayResult(maxCharacter);
+    showModal(); 
+
     
 }
 function displayResult(character) {
@@ -125,7 +127,6 @@ function displayResult(character) {
         }
     });
 
-    showModal(); 
 }
 
 
