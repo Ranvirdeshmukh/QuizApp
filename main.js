@@ -78,7 +78,7 @@ function calculateResults() {
     });
 
     displayResult(maxCharacter);
-    showModal(); 
+    
 }
 function displayResult(character) {
     // Get the modal and its components
@@ -124,6 +124,8 @@ function displayResult(character) {
             quizResultModal.style.display = 'none';
         }
     });
+
+    showModal(); 
 }
 
 
