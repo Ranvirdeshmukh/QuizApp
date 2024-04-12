@@ -38,6 +38,7 @@ function constructQuiz(data) {
         alert('Please answer all questions.'); 
     }
    // Show the modal with animation
+   showModal();
 });
 
 // document.addEventListener('DOMContentLoaded', () => { // Ensures the script runs after the DOM is fully loaded
@@ -78,7 +79,6 @@ function calculateResults() {
     });
 
     displayResult(maxCharacter);
-    showModal(); 
 
     
 }
