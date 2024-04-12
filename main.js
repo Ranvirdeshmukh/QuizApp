@@ -113,7 +113,7 @@ function displayResult(character) {
     
     resultDescription.text(descriptionText);
 
-    showModal(); // Use jQuery to show the modal
+    quizResultModal.show(); // Use jQuery to show the modal
 }
 
 
