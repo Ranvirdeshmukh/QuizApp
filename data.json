@@ -17,6 +17,8 @@
           {"text": "Pressure fuels my creativity, and I find unconventional solutions.", "img_url": "", "outcome": "D"}
         ]
       },
+
+      
       {
         "question_name": "What's your approach to solving problems?",
         "question_img_url": "",
@@ -25,6 +27,17 @@
           {"text": "Methodically, with thorough research and preparation", "img_url": "", "outcome": "B"},
           {"text": "By building strong alliances and using my network.", "img_url": "", "outcome": "C"},
           {"text": "With persistence and a bit of bending the rules if necessary.", "img_url": "", "outcome": "D"}
+        ]
+      },
+
+      {
+        "question_name": "How would your friends describe you?",
+        "question_img_url": "",
+        "answers": [
+          {"text": "Charismatic and persuasive.", "img_url": "", "outcome": "A"},
+          {"text": "Intelligent and dependable.", "img_url": "", "outcome": "B"},
+          {"text": "Loyal and caring.", "img_url": "", "outcome": "C"},
+          {"text": "Ambitious and bold.", "img_url": "", "outcome": "D"}
         ]
       },
       {
