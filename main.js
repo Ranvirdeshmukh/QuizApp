@@ -56,6 +56,7 @@ function areAllQuestionsAnswered() {
 }
 
 function calculateResults() {
+    console.log("calculate results")
     const tallies = { A: 0, B: 0, C: 0, D: 0 };
     document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
         tallies[radio.value]++;
@@ -69,13 +70,12 @@ function calculateResults() {
             maxCharacter = character;
         }
     });
-
+    console.log(maxTally, maxCharacter)
     displayResult(maxCharacter);
 
     
 }
 function displayResult(character) {
-    const quizResultModal = $('#quiz-result');
     const resultImage = $('#result-image');
     const resultDescription = $('#result-description');
 
@@ -112,8 +112,8 @@ function displayResult(character) {
     }
     
     resultDescription.text(descriptionText);
-
-    quizResultModal.show(); // Use jQuery to show the modal
+    console.log("end of display result")
+    showModal();
 }
 
 
@@ -122,12 +122,15 @@ function displayResult(character) {
 
 
 function showModal() {
-    const modal = document.querySelector('.modal');
-    modal.style.display = 'flex'; // Make the modal display:flex to show it
-    setTimeout(() => {
-        modal.style.opacity = 1; // Fade to fully visible
-        modal.style.transform = 'scale(1)'; // Scale to full size
-    }, 10); // Short timeout ensures properties are transitioned from initial state
+    console.log("show modal function")
+    const quizResultModal = $('#quiz-result');
+    console.log(quizResultModal)
+    // Correctly use jQuery methods for setting CSS properties
+    quizResultModal.css({
+        'display': 'flex',
+        'opacity': 1,
+        'transform': 'scale(1)'
+    });
 }
 
 
