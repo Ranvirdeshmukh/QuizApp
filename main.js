@@ -1,17 +1,45 @@
 // Ranvir Deshmukh 
 // Lab-2 
 
+$(document).on('change', '.answer-option input[type="radio"]', function() {
+    let selectedQuestion = $(this).attr('name');
+    
+    // Target the parent .question of the changed radio button to limit the scope of the selection
+    let questionBlock = $(this).closest('.question');
+
+    questionBlock.find('.answer-option').removeClass('active').addClass('dim');
+    $(this).closest('.answer-option').removeClass('dim').addClass('active');
+});
 
 
-document.querySelector('.submit-btn').addEventListener('click', function(e) {
+// Function to dynamically construct the quiz
+function constructQuiz(data) {
+    let quizHtml = '';
+    // Iterate over questions in data to construct HTML
+    data.questions.forEach((question, index) => {
+      quizHtml += `<div class="question"><h2>${question.question_text}</h2><div class="answers">`;
+      question.answers.forEach((answer) => {
+        quizHtml += `
+          <label class="answer-option">
+            <input type="radio" name="question${index}" value="${answer.outcome}">
+            <div class="answer-content"><span>${answer.text}</span></div>
+          </label>`;
+      });
+      quizHtml += `</div></div>`;
+    });
+  
+    $(".quiz-content").html(quizHtml);
+  
+  }  
+
+  document.querySelector('.submit-btn').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent default form submission behavior
     if (areAllQuestionsAnswered()) {
         calculateResults(); // Call calculateResults only if all questions are answered
     } else {
-        alert('Please answer all questions.'); // Provide feedback if not all questions are answered
+        alert('Please answer all questions.'); 
     }
     showModal(); // Show the modal with animation
-
 });
 
 // document.addEventListener('DOMContentLoaded', () => { // Ensures the script runs after the DOM is fully loaded
@@ -158,6 +186,13 @@ document.querySelector('.close').addEventListener('click', function() {
         modal.style.display = 'none'; 
     }, 400); 
 });
+
+$.getJSON("data.json").done(function(data) {
+    constructQuiz(data);
+}).fail(function() {
+    console.error("Error fetching data.json. Please ensure the path is correct and the server is properly configured to serve JSON files.");
+});
+
 
 
 // // Assuming the JSON file is in the same directory as your HTML file

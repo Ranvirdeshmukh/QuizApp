@@ -1,0 +1,43 @@
+{
+    "title": "Which 'Suits' Character Are You?",
+    "outcomes": {
+      "A": {"img": "harvey.jpeg", "text": "Harvey Specter - You're confident and charismatic, with a knack for getting what you want."},
+      "B": {"img": "mikeross.jpeg", "text": "Mike Ross - You're intelligent and resourceful, using your knowledge to navigate challenges."},
+      "C": {"img": "donna.jpg", "text": "Donna Paulsen - You're the heart of your group, valued for your loyalty and emotional intelligence."},
+      "D": {"img": "jess.jpg", "text": "Jessica Pearson - You're a born leader, ambitious and always thinking several steps ahead."}
+    },
+    "questions": [
+      {
+        "question_name": "How do you handle pressure?",
+        "question_img_url": "",
+        "answers": [
+          {"text": "With confidence and charm, I can talk my way through anything.", "img_url": "", "outcome": "A"},
+          {"text": "I focus on the facts and figures; logic always leads the way.", "img_url": "", "outcome": "B"},
+          {"text": "I seek advice from those I trust and then make a plan.", "img_url": "", "outcome": "C"},
+          {"text": "Pressure fuels my creativity, and I find unconventional solutions.", "img_url": "", "outcome": "D"}
+        ]
+      },
+      {
+        "question_name": "What's your approach to solving problems?",
+        "question_img_url": "",
+        "answers": [
+          {"text": "I trust my gut and my ability to read people.", "img_url": "", "outcome": "A"},
+          {"text": "Methodically, with thorough research and preparation", "img_url": "", "outcome": "B"},
+          {"text": "By building strong alliances and using my network.", "img_url": "", "outcome": "C"},
+          {"text": "With persistence and a bit of bending the rules if necessary.", "img_url": "", "outcome": "D"}
+        ]
+      },
+      {
+        "question_name": "Pick a quote that resonates with you the most?",
+        "question_img_url": "",
+        "answers": [
+          {"text": "I don't play the odds, I play the man.", "img_url": "", "outcome": "A"},
+          {"text": "Winners don’t make excuses", "img_url": "", "outcome": "B"},
+          {"text": "Loyalty is a two-way street ", "img_url": "", "outcome": "C"},
+          {"text": "When you're backed against the wall, break the goddamn thing down.", "img_url": "", "outcome": "D"}
+        ]
+      }
+
+
+    ]
+  }
