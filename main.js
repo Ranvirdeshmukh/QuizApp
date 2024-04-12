@@ -1,68 +1,60 @@
 // Ranvir Deshmukh 
 // Lab-2 
-$(document).on('change', '.answer-option input[type="radio"]', function() {
-    let questionBlock = $(this).closest('.question'); 
+$(document).ready(function() {
+    // Load the quiz data and construct the quiz UI
+    $.getJSON("data.json").done(function(data) {
+        constructQuiz(data);
+    }).fail(function() {
+        console.error("Error fetching data.json. Please ensure the path is correct and the server is properly configured to serve JSON files.");
+    });
 
-    questionBlock.find('.answer-option').removeClass('active').addClass('dim');
+    // Event handler for radio button changes to manage answer option visuals
+    $(document).on('change', '.answer-option input[type="radio"]', function() {
+        let questionBlock = $(this).closest('.question');
+        questionBlock.find('.answer-option').removeClass('active').addClass('dim');
+        $(this).closest('.answer-option').removeClass('dim').addClass('active');
+    });
 
-    $(this).closest('.answer-option').removeClass('dim').addClass('active');
+    // Event listener for the submit button
+    $('.submit-btn').on('click', function(e) {
+        e.preventDefault();
+        if (areAllQuestionsAnswered()) {
+            calculateResults();
+        } else {
+            alert('Please answer all questions.');
+        }
+    });
 });
 
-
-
+// Function to dynamically construct the quiz based on data
 function constructQuiz(data) {
     let quizHtml = '';
-    // Iterate over questions in data to construct HTML
     data.questions.forEach((question, index) => {
-      quizHtml += `<div class="question"><h2>${question.question_name}</h2><div class="answers">`;
-      question.answers.forEach((answer) => {
-        quizHtml += `
-          <label class="answer-option">
-            <input type="radio" name="question${index}" value="${answer.outcome}">
-            <div class="answer-content"><span>${answer.text}</span></div>
-          </label>`;
-      });
-      quizHtml += `</div></div>`;
+        quizHtml += `<div class="question"><h2>${question.question_name}</h2><div class="answers">`;
+        question.answers.forEach((answer) => {
+            quizHtml += `
+                <label class="answer-option">
+                    <input type="radio" name="question${index}" value="${answer.outcome}">
+                    <div class="answer-content"><span>${answer.text}</span></div>
+                </label>`;
+        });
+        quizHtml += `</div></div>`;
     });
-  
+
     $(".quiz-content").html(quizHtml);
-  
 }
 
-
-  document.querySelector('.submit-btn').addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent default form submission behavior
-    if (areAllQuestionsAnswered()) {
-        calculateResults(); // Call calculateResults only if all questions are answered
-    } else {
-        alert('Please answer all questions.'); 
-    }
-   // Show the modal with animation
-   showModal();
-});
-
-// document.addEventListener('DOMContentLoaded', () => { // Ensures the script runs after the DOM is fully loaded
-//     document.querySelector('.submit-btn').addEventListener('click', function(e) {
-//         e.preventDefault(); // Prevent default form submission behavior
-//         if (areAllQuestionsAnswered()) {
-//             calculateResults(); // Call calculateResults only if all questions are answered
-//         } else {
-//             alert('Please answer all questions.'); // Provide feedback if not all questions are answered
-//         }
-//     });
-
-// })
-
+// Function to check if all questions have been answered
 function areAllQuestionsAnswered() {
-    const questions = document.querySelectorAll('.question');
     let allAnswered = true;
-    questions.forEach(question => {
-        if (!question.querySelector('input[type="radio"]:checked')) {
-            allAnswered = false; // If any question is not answered, set allAnswered to false
+    $('.question').each(function() {
+        if (!$(this).find('input[type="radio"]:checked').length) {
+            allAnswered = false;
         }
     });
     return allAnswered;
 }
+
 function calculateResults() {
     const tallies = { A: 0, B: 0, C: 0, D: 0 };
     document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
@@ -131,42 +123,6 @@ function displayResult(character) {
 
 
 
-document.querySelectorAll('.answer-option input[type="radio"]').forEach(input => {
-    input.addEventListener('change', function() {
-        let selectedQuestion = this.name;
-        
-        // Remove active and dim classes from all options of the same question
-        document.querySelectorAll(`.answer-option input[name="${selectedQuestion}"]`).forEach(siblingInput => {
-            siblingInput.parentElement.classList.remove('active', 'dim');
-        });
-        
-        // Add active class to the selected label
-        this.parentElement.classList.add('active');
-        
-        // Add dim class to other labels
-        document.querySelectorAll(`.answer-option input[name="${selectedQuestion}"]:not(:checked)`).forEach(siblingInput => {
-            siblingInput.parentElement.classList.add('dim');
-        });
-
-        // Check if all questions are answered after making a new selection
-        // if (areAllQuestionsAnswered()) {
-        //     // If all questions are answered, calculate and display the results
-        //     calculateResults();
-        // }
-    });
-});
-
-function areAllQuestionsAnswered() {
-    const questions = document.querySelectorAll('.question');
-    for (let question of questions) {
-        if (!question.querySelector('input[type="radio"]:checked')) {
-            // If any question does not have a selected answer, return false
-            return false;
-        }
-    }
-    // If all questions have a selected answer, return true
-    return true;
-}
 
 
 function showModal() {
