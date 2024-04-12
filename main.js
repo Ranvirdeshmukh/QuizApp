@@ -12,12 +12,11 @@ $(document).on('change', '.answer-option input[type="radio"]', function() {
 });
 
 
-// Function to dynamically construct the quiz
 function constructQuiz(data) {
     let quizHtml = '';
     // Iterate over questions in data to construct HTML
     data.questions.forEach((question, index) => {
-      quizHtml += `<div class="question"><h2>${question.question_text}</h2><div class="answers">`;
+      quizHtml += `<div class="question"><h2>${question.question_name}</h2><div class="answers">`;
       question.answers.forEach((answer) => {
         quizHtml += `
           <label class="answer-option">
@@ -30,7 +29,8 @@ function constructQuiz(data) {
   
     $(".quiz-content").html(quizHtml);
   
-  }  
+}
+
 
   document.querySelector('.submit-btn').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent default form submission behavior
