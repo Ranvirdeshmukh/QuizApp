@@ -75,51 +75,47 @@ function calculateResults() {
     
 }
 function displayResult(character) {
-    // Get the modal and its components
-    const quizResultModal = document.getElementById('quiz-result');
-    const resultImage = document.getElementById('result-image');
-    const resultDescription = document.getElementById('result-description');
-    const closeButton = document.querySelector('.close');
+    const quizResultModal = $('#quiz-result');
+    const resultImage = $('#result-image');
+    const resultDescription = $('#result-description');
 
-    // Based on the character code ('A', 'B', 'C', 'D'), set the image and description
+    let imagePath = '';
+    let descriptionText = '';
+
     switch(character) {
-        case 'A': 
-            resultImage.src = 'harvey.jpeg'; // Update with correct path
-            resultDescription.textContent = "Harvey Specter - You're confident and charismatic, with a knack for getting what you want.";
+        case 'A':
+            imagePath = 'harvey.jpeg';
+            descriptionText = "Harvey Specter - You're confident and charismatic, with a knack for getting what you want.";
             break;
         case 'B':
-            resultImage.src = 'mikeross.jpeg'; // Update with correct path
-            resultDescription.textContent = "Mike Ross - You're intelligent and resourceful, using your knowledge to navigate challenges.";
+            imagePath = 'mikeross.jpeg';
+            descriptionText = "Mike Ross - You're intelligent and resourceful, using your knowledge to navigate challenges.";
             break;
         case 'C':
-            resultImage.src = 'donna.jpg'; // Update with correct path
-            resultDescription.textContent = "Donna Paulsen - You're the heart of your group, valued for your loyalty and emotional intelligence.";
+            imagePath = 'donna.jpg';
+            descriptionText = "Donna Paulsen - You're the heart of your group, valued for your loyalty and emotional intelligence.";
             break;
         case 'D':
-            resultImage.src = 'jess.jpg'; // Update with correct path
-            resultDescription.textContent = "Jessica Pearson - You're a born leader, ambitious and always thinking several steps ahead.";
+            imagePath = 'jess.jpg';
+            descriptionText = "Jessica Pearson - You're a born leader, ambitious and always thinking several steps ahead.";
             break;
         default:
-            resultDescription.textContent = "It's a tie! You share traits with multiple characters.";
-            resultImage.style.display = 'none';
+            descriptionText = "It's a tie! You share traits with multiple characters.";
+            imagePath = ''; // Ensure this is handled gracefully in your UI
+            break;
     }
 
-    // Display the modal
-    quizResultModal.style.display = 'block';
+    if(imagePath) {
+        resultImage.show().attr('src', imagePath); // Show and set the image if there is one
+    } else {
+        resultImage.hide(); // Hide the image element if no imagePath is set
+    }
+    
+    resultDescription.text(descriptionText);
 
-    // Close the modal when the close button is clicked
-    closeButton.addEventListener('click', () => {
-        quizResultModal.style.display = 'none';
-    });
-
-    // Optional: Close the modal if clicked outside of it
-    window.addEventListener('click', (event) => {
-        if (event.target === quizResultModal) {
-            quizResultModal.style.display = 'none';
-        }
-    });
-
+    quizResultModal.show(); // Use jQuery to show the modal
 }
+
 
 
 
